@@ -1,0 +1,37 @@
+name: Auto-merge Homebrew bump PRs
+
+on:
+  pull_request:
+    types:
+      - opened
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Auto-merge Homebrew bump PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_AUTHOR="${{ github.event.pull_request.user.login }}"
+          PR_BRANCH="${{ github.event.pull_request.head.ref }}"
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          echo "Checking PR #$PR_NUMBER by $PR_AUTHOR"
+
+          if [[ "$PR_AUTHOR" != "$GITHUB_REPOSITORY_OWNER" ]]; then
+            echo "Not created by repo owner, skipping"
+            exit 0
+          fi
+          if [[ "$PR_BRANCH" != bump-* ]]; then
+            echo "Not a bump branch, skipping"
+            exit 0
+          fi
+
+          gh pr merge "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --merge --delete-branch --subject "Merge PR #$PR_NUMBER: $PR_TITLE"
