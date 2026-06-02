@@ -14,4 +14,8 @@ class Rada < Formula
     system "swift", "build", "--disable-sandbox", "--configuration", "release"
     bin.install ".build/release/rada"
   end
+
+  test do
+    assert_match version.to_s, shell_output("#{bin}/rada --version")
+  end
 end
