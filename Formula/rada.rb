@@ -1,8 +1,8 @@
 class Rada < Formula
   desc "Minimal CLI for Apple on-device AI models"
   homepage "https://github.com/kszakharov/rada"
-  url "https://github.com/kszakharov/rada/archive/refs/tags/v0.2.0.tar.gz"
-  sha256 "a66eecb2fc936db8fa5b769d2465a94e47859f8c2db0e206b1e8796fb6cd0387"
+  url "https://github.com/kszakharov/rada/archive/refs/tags/v0.2.1.tar.gz"
+  sha256 "ded05498fbbd031e3e534f896cf24620ddacde1942b67561ddc175d3f88183cb"
   license "MIT"
   head "https://github.com/kszakharov/rada.git", branch: "main"
 
