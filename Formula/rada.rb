@@ -5,6 +5,7 @@ class Rada < Formula
   sha256 "ded05498fbbd031e3e534f896cf24620ddacde1942b67561ddc175d3f88183cb"
   license "MIT"
   head "https://github.com/kszakharov/rada.git", branch: "main"
+  revision 1
 
   depends_on arch: :arm64
   depends_on macos: :tahoe
