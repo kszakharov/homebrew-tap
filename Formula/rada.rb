@@ -10,6 +10,7 @@ class Rada < Formula
   depends_on macos: :tahoe
 
   def install
+    system "make", "set-version", "VERSION=#{version}"
     system "swift", "build", "--disable-sandbox", "--configuration", "release"
     bin.install ".build/release/rada"
   end
